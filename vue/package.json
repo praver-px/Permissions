@@ -1,0 +1,34 @@
+{
+  "name": "vue",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "@amap/amap-jsapi-loader": "^1.0.1",
+    "axios": "^1.4.0",
+    "core-js": "^3.8.3",
+    "echarts": "^5.4.2",
+    "element-ui": "^2.15.13",
+    "js-cookie": "^3.0.5",
+    "mavon-editor": "^2.10.4",
+    "vue": "^2.6.14",
+    "vue-amap": "^0.5.10",
+    "vue-router": "^3.5.1",
+    "vue-video-player": "^5.0.2",
+    "vuex": "^3.6.2"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-router": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "vue-template-compiler": "^2.6.14"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
+}

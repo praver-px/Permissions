@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.praver.springboot.mapper.UserMapper">
+
+    <resultMap id="pageUser" type="com.praver.springboot.entity.User">
+        <result column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="nickname" property="nickname"/>
+        <result column="address" property="address"/>
+        <result column="avatar_url" property="avatar"/>
+        <result column="email" property="email"/>
+        <result column="phone" property="phone"/>
+        <result column="role" property="role"/>
+        <collection property="courses" javaType="java.util.ArrayList"
+                    ofType="com.praver.springboot.entity.Course">
+            <result column="tname" property="name"/>
+            <result column="tscore" property="score"/>
+            <result column="ttimes" property="times"/>
+        </collection>
+        <collection property="stuCourses" javaType="java.util.ArrayList"
+                    ofType="com.praver.springboot.entity.Course">
+            <result column="sname" property="name"/>
+            <result column="sscore" property="score"/>
+            <result column="stimes" property="times"/>
+        </collection>
+    </resultMap>
+
+    <select id="findPage" resultMap="pageUser">
+        select u.*,
+        tc.name as tname,tc.score as tscore,tc.times as ttimes,
+        sc.name as sname,sc.score as sscore,sc.times as stimes
+        from sys_user as u
+        left join student_course as stc
+        on u.id=stc.student_id
+        left join course as sc
+        on sc.id = stc.course_id
+        left join course as tc
+        on u.id = tc.teacher_id
+        <where>
+            <if test="nickname != null and nickname != ''">
+                and u.nickname concat('%',#{nickname},'%')
+            </if>
+            <if test="email != null and email != ''">
+                and u.email concat('%',#{email},'%')
+            </if>
+            <if test="address != null and address != ''">
+                and u.address concat('%',#{address},'%')
+            </if>
+        </where>
+    </select>
+</mapper>

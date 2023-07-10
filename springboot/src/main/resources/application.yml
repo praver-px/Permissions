@@ -1,0 +1,41 @@
+# 启动端口
+server:
+  port: 9090
+# 应用名称
+spring:
+  # 文件上传设置
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  application:
+    name: SpringBoot
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/permissions?serverTimezone=GMT%2b8
+    username: root
+    password: root
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  redis:
+    port: 6379
+    host: 127.0.0.1
+#下面这些内容是为了让MyBatis映射
+#指定Mybatis的Mapper文件
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:/mappers/*xml
+  #指定Mybatis的实体目录
+  type-aliases-package: com.praver.springboot.entity
+logging:
+  level:
+    com.praver.springboot: debug
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+files:
+  upload:
+    path: C:/D/javaWB/code/Permissions/springboot/files/
+
